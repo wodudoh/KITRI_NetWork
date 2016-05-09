@@ -2,6 +2,7 @@ package kr.co.wodud.cont;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -37,7 +38,12 @@ public class MainRun {
 		
 		try {
 			//접근하고자 하는 Server IP, Port 세팅
+			//생성자를 이용한 접속방법
 			_socket = new Socket(_serverIP, _serverPort);
+			//메소드를 이용한 접속방법
+			_socket.connect(new InetSocketAddress(_serverIP, _serverPort));
+			System.out.println("서버 접속 성공");
+			_socket.close();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
