@@ -61,7 +61,6 @@ public class ServerMainRun implements Runnable {
 				
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 						
@@ -69,7 +68,6 @@ public class ServerMainRun implements Runnable {
 				try {
 					_socket.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -77,7 +75,6 @@ public class ServerMainRun implements Runnable {
 				try {
 					_serverSS.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -90,6 +87,7 @@ public class ServerMainRun implements Runnable {
 	 */
 	@Override
 	public void run() {
+		
 		try {
 			_is = _socket.getInputStream();
 			String _clientData = new String(_bytes, 0, _is.read(_bytes));
