@@ -17,7 +17,7 @@ public class EmpView {
 	public void printMenu(){
 		System.out.println("EMP 테스트 프로그램");
 		System.out.println("원하는 메뉴를 선택하세요 )");
-		System.out.println("1.사원입력\n2.사원출력\n3.서버구동\n4.서버연결\nq.프로그램종료");
+		System.out.println("1.사원입력\n2.사원출력\n3.서버구동\n4.서버연결\n5.DB연동\n6.DB서버연결\nq.프로그램종료");
 	}
 	/**
 	 * 메뉴 입력 메소드
@@ -38,7 +38,7 @@ public class EmpView {
 	/**
 	 * 사원 추가 메뉴.
 	 */
-	public List<EmpBean> addEmp() {
+	public EmpBean addEmp() {
 		System.out.println("사원번호를 입력하세요.");
 		int empno = Integer.parseInt(inputMenu());
 		String s_empno = Integer.toString(empno);
@@ -69,12 +69,11 @@ public class EmpView {
 			eb.setSal(sal);
 			eb.setComm(comm);
 			eb.setDeptno(deptno);
-		List<EmpBean> list = new ArrayList<EmpBean>();
-		list.add(eb);
+		
 		System.out.println("입력이 완료되었습니다.");
 		System.out.println("계속 입력하시려면 1을 입력하시고 초기화면으로 가시려면 2를 입력하세요.");
 		
-		return list;
+		return eb;
 		
 	}
 	
@@ -92,6 +91,16 @@ public class EmpView {
 		System.out.println("수당 : "+eb.getComm());
 		System.out.println("부서번호 : "+eb.getDeptno());
 	}
-	
+	public void printEmpDB(List<EmpBean> list){
+		System.out.println("DB값 출력");
+		System.out.println("사원번호\t사원이름\t매니저번호");
+		System.out.println("===================================");
+		for(int i = 0; i< list.size();i ++){
+			System.out.print(list.get(i).getEmpno());
+			System.out.print("\t"+list.get(i).getEname());
+			System.out.print("\t"+list.get(i).getMgr());
+			System.out.println();
+		}
+	}
 	
 }

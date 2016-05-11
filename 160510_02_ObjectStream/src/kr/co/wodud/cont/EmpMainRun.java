@@ -1,5 +1,6 @@
 package kr.co.wodud.cont;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.arpark.domain.EmpBean;
@@ -27,7 +28,7 @@ public class EmpMainRun {
 			// 해당 메뉴에 따라서 처리하기
 			if(input.equals("1")){
 				//사원 입력할 수 있는 메뉴 출력
-				list = ev.addEmp();
+				eb = ev.addEmp();
 			}else if(input.equals("2")){
 				//입력된 사원 출력하기
 				// eb => EmpView 사원 정보 출력 메소드
@@ -47,13 +48,14 @@ public class EmpMainRun {
 				list = ss.conServer(ip, port);
 				ev.printEmp(eb);
 			}else if(input.equals("5")){
-				//DB에 접속해서 employees 정보 가져오기
-				EmpDao empDao = new EmpDao();
-				list = empDao.getEmpAll();
-				for(EmpBean dao : list){
-					System.out.println(dao);
-				}
-				
+				//5.DB 자료형 서버 열기
+				ss.startServerDB();
+			}else if (input.equals("6")){
+				//6. DB 자료 받아오기
+				String ip = ev.inputMenu();
+				int port = Integer.parseInt(ev.inputMenu());
+				list = ss.conDBServer(ip, port);
+				ev.printEmpDB(list);
 			}
 				
 			

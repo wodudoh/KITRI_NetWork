@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.arpark.domain.EmpBean;
+import kr.co.wodud.model.EmpDao;
 
 /** Server로 Socket을 생성해서 대기
  * @author Administrator
@@ -93,7 +94,8 @@ public class ServerStart {
 			// 클라이언트로 부터 요청 오면, 자료 전송
 			// EmpBean
 			oos = new ObjectOutputStream(socket.getOutputStream());
-			
+			//empDao 한번만 사용하므로 new도 한번만 사용.
+			oos.writeObject(new EmpDao().getEmpAll());
 			// 차이점은 Database에서 부터 받아온 값을 입력
 			// oos.writeObject(eb);
 			System.out.println("oos 세팅 완료");
@@ -108,6 +110,43 @@ public class ServerStart {
 		}
 		
 		
+	}
+	/**
+	 * DB 서버 접속하는 모듈
+	 * @param ip
+	 * @param port
+	 * @return
+	 */
+	public List<EmpBean> conDBServer(String ip, int port) {
+		Socket socket = new Socket();
+		InetSocketAddress isa = new InetSocketAddress(ip, port);
+		ObjectInputStream ois = null;
+		List<EmpBean> list = new ArrayList<EmpBean>();
+		
+		try {
+			// Client가 server socket에 연결 시킴...
+			socket.connect(isa);
+			// Server OutputStream 전달된 자료
+			// InputStream 통해서 받아오기
+			ois = new ObjectInputStream(socket.getInputStream());
+			
+			// eb에 서버에 접근한 데이터 받아오기
+			// EmpBean eb = (EmpBean)ois.readObject();
+			list = (List<EmpBean>)ois.readObject();
+			
+			ois.close();
+			socket.close();
+			
+			return list;
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
