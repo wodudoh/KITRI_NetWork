@@ -1,0 +1,82 @@
+<!-- 
+060512
+웹프로그래밍_과제2
+오재영
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="join.js"></script>
+<style type="text/css"> 
+td {
+	 height: 50px;
+}
+</style>
+
+<meta charset="UTF-8">
+<title>회원가입</title>
+</head>
+<body>
+	<form action="../Join.do" method="post" name="form1">
+		<table>
+			<tr>
+				<td>아이디 </td>
+				<td><input type="text" id="userId" name="userId" placeholder="ID"autofocus="autofocus" /></td>
+			</tr>
+
+			<tr>
+				<td>비밀번호</td>
+				<td><input type="password" id="userPw" name="userPw" placeholder="password" /></td>
+			</tr>
+			<tr>
+				<td>비밀번호 확인</td>
+				<td><input type="password" id="userPw2"placeholder="password" /></td>
+			</tr>
+
+			<tr>
+				<td>이름</td>
+				<td><input type="text" id="userName" name="userName" placeholder="홍길동"/></td>
+			</tr>
+
+			<tr>
+				<td>핸드폰</td>
+				<td><input type="text" id="userPhoneNumber" name="userPhoneNumber" placeholder="010-XXXX-XXXX" /></td>
+			</tr>
+			<tr>
+				<td>이메일</td>
+				<td><input type="text" id="userEmail1" name="userEmail1" />&nbsp;
+				<input type="text" id="userEmail2" name="userEmail2" placeholder="@email.com" />&nbsp;
+				<select>
+				<option> naver.com</option>
+				<option> daum.net</option>
+				<option> gmail.com</option>
+				<option> nate.com</option>
+				</select></td>
+			</tr>
+
+			<tr>
+				<td>우편번호</td>
+				<td><input type="text" id="userZipcode1" name="userZipcode1" readonly="readonly" size="4" />&nbsp;-&nbsp;
+				<input type="text" id="userZipcode2" name="userZipcode2" readonly="readonly" size="4" />&nbsp;
+				<input type="button" id="findAddress" value="주소찾기" /></td>
+			</tr>
+			<tr>
+				<td>주소</td>
+				<td><input type="text" id="userAddress" name="userAddress" placeholder="주소는 위에 주소찾기를 이용해주세요"size="50" /></td>
+			</tr>
+			<tr>
+				<td>가입동의여부</td>
+				<td>동의<input type="radio" name="userInfoAssign" value="true" />&nbsp;
+				비동의<input type="radio" name="userInfoAssign"	value="false" checked="checked" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="button" value="가입" onclick="submit2()" />&nbsp;
+				<input type="button" value="취소" />
+				</td>
+			</tr>
+		</table>
+
+	</form>
+
+</body>
+</html>
