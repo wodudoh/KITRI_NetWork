@@ -1,3 +1,15 @@
+function OnclickEmailSelected(){
+	var selectedEmail = document.getElementById("emailSelected").value;
+	if(selectedEmail == "1"){
+		document.form1.userEmail2.readOnly = false;
+		document.form1.userEmail2.value = "";
+		document.form1.userEmail2.focus();
+	}else if(!selectedEmail == ""){
+		document.form1.userEmail2.readOnly = true;
+		document.getElementById("userEmail2").value=selectedEmail;
+	}
+}
+
 function NullCheck(){
 	var userId=document.getElementById("userId").value;
 	var userPw=document.getElementById("userPw").value;
