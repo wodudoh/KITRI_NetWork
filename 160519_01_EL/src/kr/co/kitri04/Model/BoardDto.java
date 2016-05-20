@@ -21,6 +21,7 @@ public class BoardDto {
 	private int con_unlike;
 	private int reply_lelvel;
 	private int ref_id;
+	private String use_yn;
 
 	public int getBoard_id() {
 		return board_id;
@@ -93,6 +94,12 @@ public class BoardDto {
 	}
 	public void setRef_id(int ref_id) {
 		this.ref_id = ref_id;
+	}
+	public String getUse_yn() {
+		return use_yn;
+	}
+	public void setUse_yn(String use_yn) {
+		this.use_yn = use_yn;
 	}
 	
 }

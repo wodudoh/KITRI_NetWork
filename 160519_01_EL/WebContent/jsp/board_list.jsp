@@ -30,6 +30,8 @@ function write_board(){
 			<th>추천</th>
 		</tr>
 			<c:forEach var="blist" items="${BL}">
+			<c:choose>
+			<c:when test="${blist.use_yn eq 'Y'}">
 		<tr>
 				<td>${blist.board_id}</td>
 				<td><a href="read.do?p_code=contents&b_id=${blist.board_id}">${blist.title}</a></td>
@@ -38,6 +40,9 @@ function write_board(){
 				<td>${blist.read_cnt}</td>
 				<td>${blist.con_like}</td>
 		</tr>
+			</c:when>
+			<c:otherwise><tr><td colspan="6">이미 삭제된 게시글 입니다.</td></tr></c:otherwise>
+			</c:choose>
 			</c:forEach>
 	
 	</table>

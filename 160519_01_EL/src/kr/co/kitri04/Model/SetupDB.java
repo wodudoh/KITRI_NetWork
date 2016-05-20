@@ -50,6 +50,19 @@ public class SetupDB {
 		}
 		return rs;
 	}
+	public int update(StringBuilder string){
+		int chk=0;
+		try{
+			
+			stmt = getCon().createStatement();
+			chk = stmt.executeUpdate(string.toString());
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return chk;
+		
+	}
 
 	public void closeDB() {
 		if (rs != null) {
