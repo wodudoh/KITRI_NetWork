@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<script type="text/javascript">
+	function bt1Click(){
+		alert("버튼 클릭");
+	}
+	function formchk(){
+		//input에서 입력해야할 부분 빈 값이 없도록 구성
+		var form = document.frm1;
+		if(form.p_name.value == ""){
+			alert("text에는 NULL 값 올수 없다");
+			form.p_name.focus();
+		}else if(form.p_pass.value==""){
+			alert("p_pass 값을 입력하세요.");
+			form.p_pass.focus();
+			form.p_pass.value="test";
+			form.submit();
+		}
+	
+	}
+</script>
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="submit.jsp" method="get" name="frm1"> 
+	<!-- 사이즈 size 메소드 -->
+		<input type="text" name="p_name" autofocus="autofocus" placeholder="이곳에 이름을 입력하세요."/><p/>
+		<input type="password" name="p_pass"><p/>
+		<!-- 라디오 버튼은 이름을 동일하게 해야한다.
+			value 값은 radio 버튼선택후 전달 값 설정.
+		 -->
+		-----라디오1----------<p/>
+		1-1번 : <input type="radio" name="p_radio" value="1"/><p/>
+		1-2번 : <input type="radio" name="p_radio" value="2"/><p/>
+		1-3번 : <input type="radio" name="p_radio" value="3"/><p/>
+		-----라디오2----------<p/>
+		2-1번 : <input type="radio" name="p_radio1" value="1"/><p/>
+		2-2번 : <input type="radio" name="p_radio1" value="2"/><p/>
+		2-3번 : <input type="radio" name="p_radio1" value="3"/><p/>
+		-----체크박스----------<p/>
+		좋아하는 과일 선택<p/>
+		메론<input name="p_chk" type="checkbox" value="메론" ><p/>
+		수박<input name="p_chk" type="checkbox" value="수박"><p/>
+		오렌지<input name="p_chk" type="checkbox" value="오렌지"><p/>
+		감<input name="p_chk" type="checkbox" value="감"><p/>
+		배<input name="p_chk" type="checkbox" value="배"><p/>
+		-----콤보박스----------<p/>
+		야구팀 : <select name="p_combo">
+				<option value="LG트윈스">LG트윈스</opetion>
+				<option value="한화이글스">한화이글스</opetion>
+				<option value="삼성라이온즈">삼성라이온즈</opetion>
+				<option value="두산베어스">두산베어스</opetion>
+				<option value="넥센">넥센</opetion>
+				<option value="NC">NC</opetion>
+		</select><p/>
+		<textarea name="p_area" cols="100" rows="100"></textarea><br>
+		<input type="hidden" value="test" />
+		<input type="submit" value="확인" /><br>
+		<input type="button" value="버튼클릭" onclick="formchk()"/>
+	</form>
+
+</body>
+</html>
