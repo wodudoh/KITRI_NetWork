@@ -4,6 +4,30 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+
+
+function b_modify(){
+var v_form = document.form_view;
+	// 수정 할 수 있도록 구성
+	// p_code =modify
+	v_form.p_code.value="modify";
+	//action  = read.do
+	v_form.action = "read.do";
+	v_form.submit();
+	
+}
+
+function b_delete(){
+var v_form = document.form_view;
+	v_form.p_code.value="chk_pass";
+	v_form.action = "read.do";
+	v_form.submit();
+	
+}
+
+</script>
+
 <meta charset="UTF-8">
 <title>:::글 보기 :::</title>
 </head>
@@ -46,5 +70,15 @@
 	</tr>
 
 	</table>
+	
+	<form name="form_view" method="post" >
+		<p>
+			<input type="button" value="수정하기" onclick="b_modify()" />
+		</p>
+		<p>
+			<input type="button" value="삭제하기" onclick="b_delete()" />
+		</p>
+		<input type="hidden" name="p_code" /> <input type="hidden" name="p_bid" value="${BV.board_id}"/>
+	</form>
 </body>
 </html>
