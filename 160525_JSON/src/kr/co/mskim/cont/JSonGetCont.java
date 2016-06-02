@@ -36,65 +36,63 @@ public class JSonGetCont extends HttpServlet {
 		// TODO Auto-generated method stub
 		String jsonInfo = request.getParameter("jsonValue");
 		//URLEncoder.encode(jsonInfo , "UTF-8");
-		
-		try {
+		System.out.println(jsonInfo);
+//		try {
 			 
-            JSONParser jsonParser = new JSONParser();
+//            JSONParser jsonParser = new JSONParser();
              
             //JSON�����͸� �־� JSON Object �� ����� �ش�.
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(jsonInfo);
+//            JSONObject jsonObject = (JSONObject) jsonParser.parse(jsonInfo);
              
             //books�� �迭�� ����
-            JSONArray bookInfoArray = (JSONArray) jsonObject.get("books");
+//            JSONArray bookInfoArray = (JSONArray) jsonObject.get("books");
+//            JSONArray bookInfoArray = (JSONArray) jsonParser.parse(jsonInfo);
+// 
+//            System.out.println("* BOOKS *");
+// 
+//            for(int i=0; i<bookInfoArray.size(); i++){
+// 
+//                System.out.println("=BOOK_"+i+" ===========================================");
+//                 
+//                //�迭 �ȿ� �ִ°͵� JSON���� �̱� ������ JSON Object �� ����
+//                JSONObject bookObject = (JSONObject) bookInfoArray.get(i);
+//                 
+//                //JSON name���� ����
+//                System.out.println("bookInfo: name==>"+bookObject.get("name"));
+//                System.out.println("bookInfo: writer==>"+bookObject.get("writer"));
+//                System.out.println("bookInfo: price==>"+bookObject.get("price"));
+//                System.out.println("bookInfo: genre==>"+bookObject.get("genre"));
+//                System.out.println("bookInfo: publisher==>"+bookObject.get("publisher"));
+// 
+//            }
+// 
+//            JSONArray personInfoArray = (JSONArray) jsonObject.get("persons");
+// 
+//            System.out.println("\r\n* PERSONS *");
+// 
+//            PrintWriter out3 = response.getWriter();
+//            ServletOutputStream out2 = response.getOutputStream();
+//            
+//            out3.print("PrintWriter 호출");
+//            out2.print("ServletOutputStream 호출");
+//            
+//            for(int i=0; i<personInfoArray.size(); i++){
+//            	
+//                System.out.println("=PERSON_"+i+" ===========================================");
+//                JSONObject personObject = (JSONObject) personInfoArray.get(i);
+//                System.out.println("personInfo: name==>"+personObject.get("name"));
+//                System.out.println("personInfo: age==>"+personObject.get("age"));
+//                System.out.println("personInfo: gender==>"+personObject.get("gender"));
+//               System.out.println("personInfo: nickname==>"+personObject.get("nickname"));
+// 
+//            }
  
-            System.out.println("* BOOKS *");
- 
-            for(int i=0; i<bookInfoArray.size(); i++){
- 
-                System.out.println("=BOOK_"+i+" ===========================================");
-                 
-                //�迭 �ȿ� �ִ°͵� JSON���� �̱� ������ JSON Object �� ����
-                JSONObject bookObject = (JSONObject) bookInfoArray.get(i);
-                 
-                //JSON name���� ����
-                System.out.println("bookInfo: name==>"+bookObject.get("name"));
-                System.out.println("bookInfo: writer==>"+bookObject.get("writer"));
-                System.out.println("bookInfo: price==>"+bookObject.get("price"));
-                System.out.println("bookInfo: genre==>"+bookObject.get("genre"));
-                System.out.println("bookInfo: publisher==>"+bookObject.get("publisher"));
- 
-            }
- 
-            JSONArray personInfoArray = (JSONArray) jsonObject.get("persons");
- 
-            System.out.println("\r\n* PERSONS *");
- 
-            PrintWriter out = response.getWriter();
-            ServletOutputStream out2 = response.getOutputStream();
-            
-            out.print("PrintWriter 호출");
-            out2.print("ServletOutputStream 호출");
-            
-            for(int i=0; i<personInfoArray.size(); i++){
-            	
-                System.out.println("=PERSON_"+i+" ===========================================");
-                JSONObject personObject = (JSONObject) personInfoArray.get(i);
-                System.out.println("personInfo: name==>"+personObject.get("name"));
-                System.out.println("personInfo: age==>"+personObject.get("age"));
-                System.out.println("personInfo: gender==>"+personObject.get("gender"));
-                System.out.println("personInfo: nickname==>"+personObject.get("nickname"));
- 
-            }
- 
-        } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+//        } catch (ParseException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

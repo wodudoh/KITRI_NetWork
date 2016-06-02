@@ -72,12 +72,12 @@
           bookArray.push(bookInfo);
            
           //사람, 책 정보를 넣음
-          var totalInfo = new Object();
+          //var totalInfo = new Object();
            
-          totalInfo.persons = personArray;
-          totalInfo.books = bookArray;
+         // totalInfo.persons = personArray;
+          //totalInfo.books = bookArray;
            
-          var jsonInfo = JSON.stringify(totalInfo);
+          var jsonInfo = JSON.stringify(bookArray);
           console.log(jsonInfo); //브라우저 f12개발자 모드에서 confole로 확인 가능
           alert(jsonInfo);
           document.jsonForm.jsonValue.value=jsonInfo;
