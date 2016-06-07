@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>간단한 Ajax Application</title>
-<script type="text/javascript" src="${pageContext.request.contextPath }/member/httpRequest.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/httpRequest.js"></script>
 <script type="text/javascript">
 	
 	function load(url){
