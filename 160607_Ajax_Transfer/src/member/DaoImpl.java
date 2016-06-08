@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import conn.DBConnect;
 
@@ -67,9 +69,50 @@ public class DaoImpl implements Dao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally{
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			closeDB();
 		}
 		return mb;
+	}
+	
+	public List<Member> selectALL() {
+		conn = db.getConnection();
+		String sql = "SELECT num, name, tel, email, dept, type FROM member";
+		Member mb = null;
+		List<Member> list = new ArrayList<Member>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				mb = new Member();
+				mb.setNum(rs.getInt("num"));
+				mb.setName(rs.getString("name"));
+				mb.setTel(rs.getString("tel"));
+				mb.setEmail(rs.getString("email"));
+				mb.setDept(rs.getString("dept"));
+				mb.setType(rs.getInt("type"));
+				
+				list.add(mb);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			closeDB();
+		}
+		return list;
 	}
 
 	@Override

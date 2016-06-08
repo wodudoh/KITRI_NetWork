@@ -2,6 +2,7 @@ package member;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -114,14 +115,26 @@ public class MemberController extends HttpServlet {
 			}else{
 				Member m = service.getMember(num);
 				if(m != null){
-//					request.setAttribute("Checkedid", "false");
 					out.print(false);
 				}else{
-//					request.setAttribute("Checkedid", "true");
 					out.print(true);
 				}
 //				move(request, response, "member/check.jsp");
 			}
+		}else if(type.equals("MemberXMLAll")){
+			List<Member>list = service.getMemberAll();
+			
+			System.out.println(list.toString());
+			request.setAttribute("list", list);
+			String url = "member/AllSearch.jsp";
+			move(request, response, url);
+		}else if(type.equals("MemberJSONAll")){
+			List<Member>list = service.getMemberAll();
+			
+			System.out.println(list.toString());
+			request.setAttribute("list", list);
+			String url = "member/AllSearchJSON.jsp";
+			move(request, response, url);
 		}
 	}
 

@@ -1,5 +1,7 @@
 package member;
 
+import java.util.List;
+
 public class ServiceImpl implements Service {
 	private Dao dao;
 	
@@ -35,6 +37,10 @@ public class ServiceImpl implements Service {
 	@Override
 	public void delMember(int num) {
 		dao.delete(num);
+	}
+	@Override
+	public List<Member> getMemberAll() {
+		return dao.selectALL();
 	}
 
 }
