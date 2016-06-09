@@ -18,7 +18,7 @@ window.onload=function() {
 		sendRequest("${pageContext.request.contextPath}/RepController", "code=getList", prtList, "POST");
 	var repList2 = document.getElementById('repList');
 	
-	repList2.innerHTML = "";
+	//repList2.innerHTML = "";
 		setTimeout(repList,1500);
 	}
 	
@@ -29,52 +29,64 @@ window.onload=function() {
 	    	  if(firstRem<1){
 	    	  var res = httpRequest.responseText;
 				rem = res;	  
-	    	  }
-	    	  var res = rem;
-	    	 firstRem += 1;
-	         
-	         var repList = eval("(" + res + ")");            
-	         for (i = 0; i < repList.length; i++) {
-	            makeRepDiv(repList[i]);
-	         }
-	      }
-	   }
-	}
-function makeRepDiv(rep){
-	var RepDiv = document.createElement('div');
-	RepDiv.setAttribute('id', 'rep_'+rep.num);
-	var html = "name : " + rep.name + "<br/>"
-	+"content : " + rep.content + "<br/>"
-	+"<input type='button' value='수정' onclick='delReply("+rep.num+")' >"
-	+"<input type='button' value='삭제' onclick='updateReply("+rep.num+")' >";
-	RepDiv.innerHTML = html;
-	var repList = document.getElementById("repList");
-	repList.appendChild(RepDiv);
-	
-}
+				var repList = eval("(" + res + ")");
+					for (i = 0; i < repList.length; i++) {
+						makeRepDiv(repList[i], i);
+					}
+				}else{
+					var res = httpRequest.responseText;
+					if(res != rem){
+						var targetId = document.getElementById('repList');
+						var createTagNode = document.createElement("a");
+						createTagNode.innerHTML = "드디어 추가했다.";
+						createTagNode.setAttribute ("style","color:red")
+						targetId.insertBefore(createTagNode, targetId.firstChild);
+					}
+				}
 
-function delReply(repNum){
-	alert(repNum+"지울 번호");
-}
-function updateReply(repNum){
-	alert(repNum+"수정할 번호");
-	
-}
-function addRep(){
-	var param = "type=addRep&name=" + document.f.name.value + "&content=" + document.f.content.value;
-	sendRequest("${pageContext.request.contextPath}/RepController", param, addResult, "POST");
-	
-}function addResult() {
-	   if (httpRequest.readyState == 4) {
-		      if (httpRequest.status == 200) {
-		         var str = httpRequest.responseText;
-		         var repList = eval("(" + rtr + ")");            
-		            makeRepDiv(repList[i]);
-		       }
-		   }
+				firstRem += 1;
+
+			}
 		}
+	}
+	function makeRepDiv(rep, i) {
+		var RepDiv = document.createElement('div');
+		RepDiv.setAttribute('id', 'rep_' + rep.num);
+		var html = "<div id='divId_"+ i +"'> name : " + rep.name + "<br/>" + "content : " + rep.content
+				+ "<br/>"
+				+ "<input type='button' value='수정' onclick='delReply("
+				+ rep.num + ")' >"
+				+ "<input type='button' value='삭제' onclick='updateReply("
+				+ rep.num + ")' ></div>";
+		RepDiv.innerHTML = html;
+		var repList = document.getElementById("repList");
+		repList.appendChild(RepDiv);
 
+	}
 
+	function delReply(repNum) {
+		alert(repNum + "지울 번호");
+	}
+	function updateReply(repNum) {
+		alert(repNum + "수정할 번호");
+
+	}
+	function addRep() {
+		var param = "type=addRep&name=" + document.f.name.value + "&content="
+				+ document.f.content.value;
+		sendRequest("${pageContext.request.contextPath}/RepController", param,
+				addResult, "POST");
+
+	}
+	function addResult() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {
+				var str = httpRequest.responseText;
+				var repList = eval("(" + rtr + ")");
+				makeRepDiv(repList[i]);
+			}
+		}
+	}
 </script>
 
 
