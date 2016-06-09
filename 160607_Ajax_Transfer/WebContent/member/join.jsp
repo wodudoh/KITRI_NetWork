@@ -15,11 +15,11 @@ function check(){
 }
 
 function test(){
-	var checkid = document.getElementsByName("Checkedid")[0].value;
-	if(checkid.value == "false"){
+	var checkFlag = document.getElementsByName("Checkedid")[0].value;
+	if(checkFlag == "false"){
 		alert("아이디체크 후 진행 하세요");
-		checkid.focus();
-	}else{
+		document.frm.num.focus();
+	}else if(checkFlag == "true"){
 		document.frm.submit();
 	}
 }
@@ -27,12 +27,15 @@ function req_check(){
 	var checkedid = document.frm.Checkedid;
 	if(httpRequest.readyState == 4){
 		if(httpRequest.status == 200){
-			var result = httpRequest.responseText;
+			var resultJSON = httpRequest.responseText;
+			var result = eval("("+resultJSON+")");
 			var idChecked = document.getElementById("idChecked");
-			if(result == "true"){
+			if(result.flag == "true"){
 				idChecked.innerHTML = "사용가능 아이디";
-			}else{
+				document.getElementsByName("Checkedid")[0].value=result;
+			}else if(result.flag == "false"){
 				idChecked.innerHTML = "사용불가 아이디";
+				document.getElementsByName("Checkedid")[0].value=result;
 			}
 			
 		}else{

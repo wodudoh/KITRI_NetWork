@@ -7,5 +7,3 @@
 <c:if test="${not status.first}">,</c:if> 
 	{num:${list.num},name:'${list.name}', tel:'${list.tel}', email:'${list.email}', dept:'${list.dept}', type:${list.type}}
 </c:forEach>
-
-]

@@ -51,37 +51,47 @@
 		}
 
 	}
-
+	var o;
 	function JsonAllMember() {
 		if (httpRequest.readyState == 4) {
 			if (httpRequest.status == 200) {
 				var JsonDoc = httpRequest.responseText;
-				var o = eval("(" + JsonDoc + ")");
+				o = eval("(" + JsonDoc + ")");
 				var JsonValue = document.getElementById("JsonValue");
 				var message = "멤버 인원 : " + o.length + "명 <br/><table id='member_"+i+"'>";
 				for (var i = 0; i < o.length; i++) {
-					message += "<tr>"+"<td>학번 : " + o[i].num + "</td><td>" + "이름 : " + o[i].name
-							+ "</td><td>" + "전화 : " + o[i].tel + "</td><td>" + "이메일 : "
-							+ o[i].email + "</td><td>" + "부(서) : " + o[i].dept + "</td><td>" + "직업 : ";
-							
-							if(o[i].type == 1){
-								message +="교직원";
-							}else if(o[i].type == 2){
-								message += "교수";
-							}else if(o[i].type == 3){
-								message += "학생";
-							}
-							message += " <input type='button' onclick = 'deleteMember(o[i].num, )'value='삭제' /> </td></tr>";
-							
+					message += "<tr id='tr_"+i+"'><td onmouseover ='a(o["+i+"])' onmouseout='b()' >" + "이름 : " + o[i].name + "</td><td> <input type='button' onclick = 'deleteMember(o["+i+"].num, tr_"+i+")' value='삭제' /> </td></tr>";
 				}
-				
 				message +="</table>";
 				JsonValue.innerHTML = message;
 			}
 		}
 	}
-	function deleteMember(num){
+	function deleteMember(num, tr_id){
+		if(window.confirm("학번'num'를 진심으로 지우실건가요?")){
+			alert(tr_id+"지워졌습니다.")
+		}
 		
+		
+	}
+	
+	function b(o){
+		var memberInfo = document.getElementById("memberInfo");
+		memberInfo.innerHTML = "";
+	}
+	
+	function a(o2){
+		var memberInfo = document.getElementById("memberInfo");
+		var htmlMessage = 
+			"<table><tr><th>멤버 상세정보</th></tr> <tr><th>학번 : </th><td>"+o2.num+"</td></tr> <tr><th>이름 : </th><td>"+o2.name+"</td></tr> <tr><th>전화 : </th><td>"+o2.tel+"</td></tr> <tr><th>이메일 : </th><td>"+o2.email+"</td></tr><tr><th>부서 : </th><td>"+o2.dept+"</td></tr> <tr><th>직업 : </th><td>";
+			if(o2.type == 1){
+			htmlMessage += "교직원</td></tr><table>";
+			} else if(o2.type ==2 ){
+				htmlMessage += "교수</td></tr><table>";
+			} else if(o2.type == 3){
+				htmlMessage += "학생</td></tr><table>";
+			}
+		memberInfo.innerHTML = htmlMessage;
 	}
 </script>
 <title>::학사 관리 프로그램 Main::</title>
@@ -98,7 +108,8 @@
 
 	<input type="button" value="모든사용자" onclick="callAllMember()">
 	<p>
-		<span id="xmlValue"></span> <span id="JsonValue"></span>
+		<span id="xmlValue"></span> <span id="JsonValue"></span><br/>
+		<span id="memberInfo"></span>
 	</p>
 
 

@@ -114,12 +114,14 @@ public class MemberController extends HttpServlet {
 				response.sendError(500);
 			}else{
 				Member m = service.getMember(num);
+				String url="member/IdCheckJSON.jsp";
 				if(m != null){
-					out.print(false);
+					request.setAttribute("result", false);
 				}else{
-					out.print(true);
+					request.setAttribute("result", true);
 				}
-//				move(request, response, "member/check.jsp");
+				move(request, response, url);
+
 			}
 		}else if(type.equals("MemberXMLAll")){
 			List<Member>list = service.getMemberAll();
