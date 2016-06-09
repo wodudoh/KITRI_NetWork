@@ -59,7 +59,6 @@ public class RepController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest rq, HttpServletResponse res) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(rq, res);
 	}
 	
@@ -70,7 +69,6 @@ public class RepController extends HttpServlet {
 		try {
 			rd.forward(rq, res);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
